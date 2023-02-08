@@ -13,11 +13,6 @@ AWorkerSpawner::AWorkerSpawner()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-ISpawner::TYPE AWorkerSpawner::GetType()
-{
-	return TYPE::WORKER;
-}
-
 // Called when the game starts or when spawned
 void AWorkerSpawner::BeginPlay()
 {

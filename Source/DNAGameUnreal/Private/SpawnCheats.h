@@ -20,7 +20,7 @@ public:
 	~USpawnCheats();
 
 	UFUNCTION(Exec)
-	void SpawnWorker();
+	void SpawnCreature();
 
 	bool ProcessConsoleExec(const TCHAR* Cmd, FOutputDevice& Ar, UObject* Executor) override;
 
@@ -28,8 +28,10 @@ public:
 
 	static void RemoveSpawner(ISpawner* spawner);
 
+	void SetSpawnType(EWorkerType type);
+
 private:
 	static FDelegateHandle cheatManagerDelegate;
 
-	static TArray<ISpawner*> workerSpawners;
+	static TArray<ISpawner*> spawners;
 };

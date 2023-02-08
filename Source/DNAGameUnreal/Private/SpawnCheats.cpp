@@ -10,16 +10,16 @@ FDelegateHandle USpawnCheats::cheatManagerDelegate = UCheatManager::RegisterForO
 		CheatManager->AddCheatManagerExtension(NewObject<USpawnCheats>(CheatManager));
 	}));
 
-TArray<ISpawner*> USpawnCheats::workerSpawners{};
+TArray<ISpawner*> USpawnCheats::spawners{};
 
 USpawnCheats::~USpawnCheats()
 {
 	UCheatManager::UnregisterFromOnCheatManagerCreated(cheatManagerDelegate);
 }
 
-void USpawnCheats::SpawnWorker()
+void USpawnCheats::SpawnCreature()
 {
-	for (ISpawner* spawner : workerSpawners)
+	for (ISpawner* spawner : spawners)
 	{
 		spawner->Spawn();
 	}
@@ -27,33 +27,43 @@ void USpawnCheats::SpawnWorker()
 
 bool USpawnCheats::ProcessConsoleExec(const TCHAR* Cmd, FOutputDevice& Ar, UObject* Executor)
 {
-	if (FString{ Cmd } == "Worker.Spawn")
+	if (FString{ Cmd } == "spawn worker")
 	{
-		SpawnWorker();
-		return true;
+		SetSpawnType(EWorkerType::WORKER);
 	}
-	return false;
+	else if (FString{ Cmd } == "spawn finder")
+	{
+		SetSpawnType(EWorkerType::FINDER);
+	}
+	else
+	{
+		return false;
+	}
+
+	SpawnCreature();
+	return true;
 }
 
 void USpawnCheats::AddSpawner(ISpawner* spawner)
 {
-	switch (spawner->GetType())
+	if (spawners.Find(spawner) == INDEX_NONE)
 	{
-	case ISpawner::TYPE::WORKER:
-		if (workerSpawners.Find(spawner) == INDEX_NONE)
-		{
-			workerSpawners.Push(spawner);
-		}
-		break;
-	default: Util::PrintLog(FString::Format(TEXT("Unknown type %d"), { static_cast<int>(spawner->GetType()) })); break;
+		spawners.Push(spawner);
 	}
-	
 }
 
 void USpawnCheats::RemoveSpawner(ISpawner* spawner)
 {
 	if (spawner != nullptr)
 	{
-		workerSpawners.Remove(spawner);
+		spawners.Remove(spawner);
+	}
+}
+
+void USpawnCheats::SetSpawnType(EWorkerType type)
+{
+	for (ISpawner* spawner : spawners)
+	{
+		spawner->SetType(type);
 	}
 }

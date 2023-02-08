@@ -16,10 +16,20 @@ public:
 	// Sets default values for this actor's properties
 	AWorkerSpawner();
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Spawn")
+	UFUNCTION(BlueprintImplementableEvent, Category="Spawn")
 	void Spawn();
 
-	TYPE GetType();
+	UFUNCTION(BlueprintCallable)
+	virtual EWorkerType GetType() override
+	{
+		return ISpawner::GetType();
+	}
+
+	UFUNCTION(BlueprintCallable)
+	virtual void SetType(EWorkerType type) override
+	{
+		ISpawner::SetType(type);
+	}
 
 protected:
 	// Called when the game starts or when spawned
