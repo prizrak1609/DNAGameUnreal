@@ -3,14 +3,6 @@
 #include "Util.h"
 #include "Engine.h"
 
-Util::Util()
-{
-}
-
-Util::~Util()
-{
-}
-
 void Util::PrintLog(FString text)
 {
 	static uint64 key = 0;

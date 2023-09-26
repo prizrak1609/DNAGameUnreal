@@ -25,6 +25,18 @@ void USpawnCheats::SpawnCreature()
 	}
 }
 
+void USpawnCheats::SpawnWorker()
+{
+    SetSpawnType(EWorkerType::WORKER);
+    SpawnCreature();
+}
+
+void USpawnCheats::SpawnFinder()
+{
+    SetSpawnType(EWorkerType::FINDER);
+    SpawnCreature();
+}
+
 bool USpawnCheats::ProcessConsoleExec(const TCHAR* Cmd, FOutputDevice& Ar, UObject* Executor)
 {
 	if (FString{ Cmd } == "spawn worker")

@@ -19,8 +19,13 @@ class USpawnCheats : public UCheatManagerExtension
 public:
 	~USpawnCheats();
 
-	UFUNCTION(Exec)
 	void SpawnCreature();
+
+    UFUNCTION(Exec)
+    void SpawnWorker();
+
+    UFUNCTION(Exec)
+    void SpawnFinder();
 
 	bool ProcessConsoleExec(const TCHAR* Cmd, FOutputDevice& Ar, UObject* Executor) override;
 

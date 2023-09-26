@@ -10,8 +10,5 @@
 class Util
 {
 public:
-	Util();
-	~Util();
-
 	static void PrintLog(FString text);
 };
