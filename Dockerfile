@@ -1,6 +1,7 @@
 ﻿FROM ubuntu:22.04
 
 # Unreal Engine directory is /unreal_engine
+# Sources directory is /src
 # Archive directory is /archive
 
 ARG TargetPlatform=Linux
@@ -16,8 +17,7 @@ RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 
 USER 1000:1000
 
-RUN --mount=type=bind,source=$SourcesPath,target=/src,readwrite \
-    /unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
+RUN /unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
     -project=/src/$ProjectName.uproject \
     -build \
     -configuration=$Configuration \
