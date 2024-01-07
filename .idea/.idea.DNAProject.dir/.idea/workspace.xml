@@ -37,7 +37,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e60ecf8c-5d5b-4a0d-8b3b-ad748aa520a2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DNAProject.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DNAProject.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNAProject.sln" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +190,7 @@
       <workItem from="1704653498982" duration="5121000" />
       <workItem from="1704658702749" duration="651000" />
       <workItem from="1704660801891" duration="1322000" />
-      <workItem from="1704662139702" duration="1763000" />
+      <workItem from="1704662139702" duration="2307000" />
     </task>
     <servers />
   </component>

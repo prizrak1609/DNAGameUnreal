@@ -1,7 +1,5 @@
 ﻿FROM ubuntu:22.04
 
-# Unreal Engine is located in /unreal_engine
-# Sources is located in /src
 # Archive directory is /archive
 
 ARG TargetPlatform=Linux
@@ -15,15 +13,11 @@ ARG SourcesPath
 
 RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 
-RUN mkdir -p /unreal_engine
-RUN mkdir -p /src
-
 USER 1000:1000
 
-COPY $UnrealEnginePath /unreal_engine
-COPY $SourcesPath /src
-
-RUN /unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
+RUN --mount=type=bind,source=$UnrealEnginePath,target=/unreal_engine,readwrite \
+    --mount=type=bind,source=$SourcesPath,target=/src,readwrite \
+    /unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
     -project=/src/$ProjectName.uproject \
     -build \
     -configuration=$Configuration \
