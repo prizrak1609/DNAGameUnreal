@@ -1,4 +1,4 @@
-﻿FROM ubuntu/dotnet-aspnet:6.0-22.04_stable
+﻿FROM ubuntu:22.04
 
 # Unreal Engine is located in /unreal_engine
 # Sources is located in /src
@@ -12,6 +12,8 @@ ARG StageDir=/tmp
 
 ARG UnrealEnginePath
 ARG SourcesPath
+
+RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 
 RUN mkdir -p /unreal_engine
 RUN mkdir -p /src
