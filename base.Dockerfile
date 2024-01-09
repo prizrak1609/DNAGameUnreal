@@ -15,10 +15,10 @@ ARG SourcesPath
 
 RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 
-WORKDIR /
+ARG UnrealEnginePath
 
-RUN mkdir unreal_engine
-RUN mkdir src
+RUN mkdir /unreal_engine
+RUN mkdir /src
 
-COPY --chown=1000:1000 /unreal_engine /unreal_engine
+COPY --chown=1000:1000 $UnrealEnginePath /unreal_engine
 COPY --chown=1000:1000 . /src
