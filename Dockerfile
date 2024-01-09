@@ -15,22 +15,30 @@ ARG SourcesPath
 
 RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 
+WORKDIR /
+
+RUN mkdir unreal_engine
+RUN mkdir src
+
 USER 1000:1000
 
+COPY ${UnrealEnginePath} /unreal_engine
+COPY ${SourcesPath} /src
+
 RUN /unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
-    -project=/src/$ProjectName.uproject \
+    -project=/src/${ProjectName}.uproject \
     -build \
-    -configuration=$Configuration \
-    -targetplatform=$TargetPlatform \
+    -configuration=${Configuration} \
+    -targetplatform=${TargetPlatform} \
     -cook \
     -unversionedcookedcontent \
     -stage \
-    -stagingdirectory=$StageDir \
+    -stagingdirectory=${StageDir} \
     -pak \
     -compressed \
     -prereqs \
     -archive \
-    -archivedirectory=$ArchiveDir \
+    -archivedirectory=${ArchiveDir} \
     -archivemetadata \
     -package \
     -allmaps \
