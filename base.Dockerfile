@@ -20,8 +20,5 @@ WORKDIR /
 RUN mkdir unreal_engine
 RUN mkdir src
 
-RUN echo $UnrealEnginePath
-RUN echo $SourcesPath
-
-COPY --chown=1000:1000 /$UnrealEnginePath /unreal_engine
-COPY --chown=1000:1000 $SourcesPath /src
+COPY --chown=1000:1000 /unreal_engine /unreal_engine
+COPY --chown=1000:1000 . /src
