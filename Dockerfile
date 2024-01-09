@@ -1,4 +1,4 @@
-﻿FROM base
+﻿FROM base:1.0
 
 # Unreal Engine directory is /unreal_engine
 # Sources directory is /src
