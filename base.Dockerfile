@@ -22,5 +22,8 @@ RUN mkdir src
 
 USER 1000:1000
 
+RUN echo $UnrealEnginePath
+RUN echo $SourcesPath
+
 COPY $UnrealEnginePath /unreal_engine
 COPY $SourcesPath /src
