@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 
 ARG UnrealEnginePath
 
+RUN echo $UnrealEnginePath
+
 RUN mkdir /unreal_engine
 RUN mkdir /src
 
