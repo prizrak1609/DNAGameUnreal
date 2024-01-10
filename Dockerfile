@@ -7,38 +7,13 @@
 ARG TargetPlatform=Linux
 ARG Configuration=Development
 ARG ProjectName=DNAGameUnreal
+ARG StageDir=/stage
 ARG ArchiveDir=/archive
-ARG StageDir=/tmp
-
-ARG UnrealEnginePath
 
 USER 1000:1000
 
-RUN --mount=type=bind,source=$UnrealEnginePath,target=/unreal_engine,rw \
-     --mount=type=bind,source=.,target=/src,rw \
-     /unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
-            -project=/src/$ProjectName.uproject \
-            -build \
-            -configuration=$Configuration \
-            -targetplatform=$TargetPlatform \
-            -cook \
-            -unversionedcookedcontent \
-            -stage \
-            -stagingdirectory=$StageDir \
-            -pak \
-            -compressed \
-            -prereqs \
-            -archive \
-            -archivedirectory=$ArchiveDir \
-            -archivemetadata \
-            -package \
-            -allmaps \
-            -utf8output \
-            -buildmachine \
-            -unattended \
-            -noP4 \
-            -nosplash \
-            -stdout \
-            -NoCodeSign \
-            -separatedebuginfo \
-            -deploy
+COPY --chown=1000:1000 Build/build.sh /tmp
+
+RUN chmod 755 /tmp/build.sh
+
+CMD [ "/bin/bash", "-c", "/tmp/build.sh $ProjectName $Configuration $TargetPlatform $StageDir $ArchiveDir" ]
