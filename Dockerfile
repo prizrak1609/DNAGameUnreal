@@ -1,8 +1,10 @@
-﻿FROM azzulis/dnagame_base:1.0
+﻿FROM ubuntu:22.04
 
 # Unreal Engine directory is /unreal_engine
 # Sources directory is /src
 # Archive directory is /archive
+
+RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 
 USER 1000:1000
 
