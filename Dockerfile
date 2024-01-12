@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y dotnet6 ca-certificates
 COPY Project/Build/build.sh /tmp
 
 RUN chmod 755 /tmp/build.sh
+RUN mkdir /src
+RUN mkdir /unreal_engine
 
 WORKDIR /tmp
 
