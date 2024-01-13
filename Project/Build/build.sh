@@ -6,6 +6,8 @@ export TargetPlatform=$3
 export ArchiveDir=$4
 export StageDir=$5
 
+chown -R builder /tmp/unreal_engine
+
 /tmp/unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
             -project=/tmp/src/$ProjectName.uproject \
             -build \
