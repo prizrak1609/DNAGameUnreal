@@ -1,15 +1,15 @@
 ﻿FROM ubuntu:22.04
 
-# Unreal Engine directory is /unreal_engine_<version>
-# Sources directory is /src
-# Archive directory is /archive
+# Unreal Engine directory is /tmp/unreal_engine_<version>
+# Sources directory is /tmp/src
+# Archive directory is /tmp/archive
 
 RUN apt-get update && apt-get install -y dotnet6 ca-certificates zip
 
-RUN mkdir /stage
+RUN useradd -ms /bin/bash builder
 
-COPY Project/Build/build.sh /tmp
+USER builder
+
+COPY --chown=builder Project/Build/build.sh /tmp
 
 RUN chmod 755 /tmp/build.sh
-
-USER root

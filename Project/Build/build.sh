@@ -4,16 +4,17 @@ export ProjectName=$1
 export Configuration=$2
 export TargetPlatform=$3
 export ArchiveDir=$4
+export StageDir=$5
 
-/unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
-            -project=/src/$ProjectName.uproject \
+/tmp/unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
+            -project=/tmp/src/$ProjectName.uproject \
             -build \
             -configuration=$Configuration \
             -targetplatform=$TargetPlatform \
             -cook \
             -unversionedcookedcontent \
             -stage \
-            -stagingdirectory=/stage \
+            -stagingdirectory=$StageDir \
             -pak \
             -compressed \
             -prereqs \
