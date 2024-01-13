@@ -7,6 +7,8 @@
 RUN apt-get update && apt-get install -y dotnet6 ca-certificates zip
 
 RUN useradd -ms /bin/bash builder
+RUN usermod -aG sudo builder
+RUN echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER builder
 
