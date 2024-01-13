@@ -4,7 +4,7 @@
 # Sources directory is /tmp/src
 # Archive directory is /tmp/archive
 
-RUN apt-get update && apt-get install -y dotnet6 ca-certificates zip
+RUN apt-get update && apt-get install -y dotnet6 ca-certificates zip sudo
 
 RUN useradd -ms /bin/bash builder
 RUN usermod -aG sudo builder
