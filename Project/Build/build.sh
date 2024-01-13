@@ -8,10 +8,10 @@ export StageDir=$5
 
 sudo chown -R builder /tmp/unreal_engine
 
-cd $(dirname "${ProjectPath}")
+cd /tmp
 
-/tmp/unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
-            -project=$(basename "${ProjectPath}") \
+./unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
+            -project=/tmp/src/$ProjectPath \
             -build \
             -configuration=$Configuration \
             -targetplatform=$TargetPlatform \
