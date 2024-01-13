@@ -6,7 +6,7 @@ TargetPlatform=$3
 StageDir=$4
 ArchiveDir=$5
 
-/unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
+/unreal_engine_5.3.2/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
             -project=/src/$ProjectName.uproject \
             -build \
             -configuration=$Configuration \

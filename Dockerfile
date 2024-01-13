@@ -1,7 +1,7 @@
 ﻿# syntax = docker/dockerfile:experimental
 FROM ubuntu:22.04
 
-# Unreal Engine directory is /unreal_engine
+# Unreal Engine directory is /unreal_engine_<version>
 # Sources directory is /src
 # Archive directory is /archive
 
@@ -17,4 +17,6 @@ COPY Project /src
 
 WORKDIR /tmp
 
-RUN --mount=type=bind,source=unreal_engine_5.3.2,target=/unreal_engine ./build.sh
+VOLUME [ "/unreal_engine_5.3.2" ]
+
+RUN ./build.sh
