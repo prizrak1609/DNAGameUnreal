@@ -11,7 +11,7 @@ sudo chown -R builder /tmp/unreal_engine
 cd /tmp
 
 ./unreal_engine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
-            -project=../src/$ProjectPath \
+            -project=$ProjectPath \
             -build \
             -configuration=$Configuration \
             -targetplatform=$TargetPlatform \

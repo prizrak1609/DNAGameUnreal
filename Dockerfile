@@ -15,3 +15,5 @@ USER builder
 COPY --chown=builder Project/Build/build.sh /tmp
 
 RUN chmod 755 /tmp/build.sh
+
+WORKDIR /
