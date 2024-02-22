@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+using System.Linq;
 using UnrealBuildTool;
 
 public class DNAProject : ModuleRules
@@ -7,8 +8,11 @@ public class DNAProject : ModuleRules
 	public DNAProject(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore",
+			"EnhancedInput", "NavigationSystem", "Navmesh", "NavCorridor" });
+
+        CppStandard = CppStandardVersion.Cpp20;
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
